@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#EEF1F5" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10151B" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Rigo 2028">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%99%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Portofoliu Rigo 2028</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#EEF1F5; --surface:#FFFFFF; --surface-2:#F7F9FB;
+  --ink:#151B23; --ink-2:#4E5C6B; --ink-3:#8593A2;
+  --line:#DCE3EA; --line-2:#C6D0DA;
+  --accent:#9A6B1E; --accent-soft:#F3E7D0;
+  --gain:#136B50; --gain-soft:#DCEEE6;
+  --loss:#A63F35; --loss-soft:#F6E1DD;
+  --bc:#2E4A7D; --bc-soft:#E1E9F5;
+  --lc:#6B3B72; --lc-soft:#F0E4F2;
+  --tp:#2E5FA3; --sl:#8593A2;
+  --shadow:0 1px 2px rgba(21,27,35,.05), 0 8px 24px -16px rgba(21,27,35,.28);
+  --display:"Bricolage Grotesque","Trebuchet MS",sans-serif;
+  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono","Cascadia Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#10151B; --surface:#181F27; --surface-2:#1E262F;
+    --ink:#E3E9EF; --ink-2:#9DAAB8; --ink-3:#6F7E8D;
+    --line:#2A343E; --line-2:#3A4753;
+    --accent:#D5A44F; --accent-soft:#3A2E17;
+    --gain:#48BE93; --gain-soft:#16302A;
+    --loss:#E27C6B; --loss-soft:#3A211D;
+    --bc:#8CADE0; --bc-soft:#1D2A3E;
+    --lc:#C79BCE; --lc-soft:#2E1F32;
+    --tp:#7FA9E0; --sl:#6F7E8D;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#10151B; --surface:#181F27; --surface-2:#1E262F;
+  --ink:#E3E9EF; --ink-2:#9DAAB8; --ink-3:#6F7E8D;
+  --line:#2A343E; --line-2:#3A4753;
+  --accent:#D5A44F; --accent-soft:#3A2E17;
+  --gain:#48BE93; --gain-soft:#16302A;
+  --loss:#E27C6B; --loss-soft:#3A211D;
+  --bc:#8CADE0; --bc-soft:#1D2A3E;
+  --lc:#C79BCE; --lc-soft:#2E1F32;
+  --tp:#7FA9E0; --sl:#6F7E8D;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--body); font-size:15px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1460px; margin:0 auto; padding:32px 24px 72px; display:flex; flex-direction:column; gap:28px}
+
+/* ---------- header ---------- */
+header{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:20px 32px}
+.title-block{display:flex; flex-direction:column; gap:8px; max-width:62ch}
+h1{
+  font-family:var(--display); font-weight:800; font-size:clamp(30px,4.4vw,46px);
+  letter-spacing:-.025em; line-height:1.02; margin:0; text-wrap:balance;
+}
+h1 .yr{color:var(--accent)}
+.sub{margin:0; color:var(--ink-2); font-size:15px}
+.disclaimer{
+  margin:0; font-size:12.5px; color:var(--ink-3);
+  border-left:2px solid var(--line-2); padding-left:10px;
+}
+.stamp{
+  font-family:var(--mono); font-size:12px; color:var(--ink-2);
+  background:var(--surface); border:1px solid var(--line); border-radius:2px;
+  padding:10px 14px; display:flex; flex-direction:column; gap:3px; white-space:nowrap;
+}
+.stamp b{color:var(--ink); font-weight:600}
+.stamp span{color:var(--ink-3)}
+
+/* ---------- stat tiles ---------- */
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:1px; background:var(--line); border:1px solid var(--line)}
+.tile{background:var(--surface); padding:16px 18px; display:flex; flex-direction:column; gap:4px}
+.tile .lab{font-family:var(--mono); font-size:10.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-3)}
+.tile .val{font-family:var(--display); font-weight:600; font-size:27px; letter-spacing:-.02em; font-variant-numeric:tabular-nums; line-height:1.1}
+.tile .hint{font-size:12.5px; color:var(--ink-2)}
+.tile .val.up{color:var(--gain)} .tile .val.down{color:var(--loss)}
+
+/* ---------- controls ---------- */
+.controls{display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px}
+.search{
+  flex:1 1 240px; max-width:320px; font-family:var(--body); font-size:14px; color:var(--ink);
+  background:var(--surface); border:1px solid var(--line-2); border-radius:2px; padding:9px 12px;
+}
+.search::placeholder{color:var(--ink-3)}
+.search:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+.pills{display:flex; flex-wrap:wrap; gap:6px}
+.pill{
+  font-family:var(--mono); font-size:12px; letter-spacing:.02em; cursor:pointer;
+  background:var(--surface); color:var(--ink-2);
+  border:1px solid var(--line-2); border-radius:2px; padding:7px 11px;
+}
+.pill:hover{border-color:var(--ink-3); color:var(--ink)}
+.pill:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
+.pill[aria-pressed="true"]{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+.count{margin-left:auto; font-family:var(--mono); font-size:12px; color:var(--ink-3)}
+
+/* ---------- table ---------- */
+.tablewrap{
+  background:var(--surface); border:1px solid var(--line);
+  overflow-x:auto; box-shadow:var(--shadow);
+}
+table{border-collapse:separate; border-spacing:0; width:100%; min-width:1240px}
+thead th{
+  position:sticky; top:0; z-index:3;
+  background:var(--surface-2); border-bottom:1px solid var(--line-2);
+  font-family:var(--mono); font-weight:500; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--ink-2); text-align:left; padding:11px 12px; white-space:nowrap;
+  cursor:pointer; user-select:none;
+}
+thead th.static{cursor:default}
+thead th:hover:not(.static){color:var(--ink)}
+thead th:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+thead th .arrow{opacity:.32; margin-left:5px; font-size:9px}
+thead th[aria-sort] {color:var(--accent)}
+thead th[aria-sort] .arrow{opacity:1}
+tbody td{padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:middle}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+tbody tr.nocall td{color:var(--ink-3)}
+.num{font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right}
+th.num{text-align:right}
+.idx{font-family:var(--mono); font-size:11.5px; color:var(--ink-3); width:38px}
+
+/* sticky identity column */
+.c-coin{position:sticky; left:0; z-index:2; background:var(--surface); border-right:1px solid var(--line); min-width:186px}
+thead .c-coin{z-index:4; background:var(--surface-2)}
+tbody tr:hover .c-coin{background:var(--surface-2)}
+.tick{font-family:var(--display); font-weight:600; font-size:15px; letter-spacing:-.01em}
+.cname{font-size:12px; color:var(--ink-2); line-height:1.3}
+.csec{font-size:11px; color:var(--ink-3); line-height:1.3}
+
+.cat{
+  display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.05em;
+  padding:3px 7px; border-radius:2px; white-space:nowrap;
+}
+.cat.bc{background:var(--bc-soft); color:var(--bc)}
+.cat.lc{background:var(--lc-soft); color:var(--lc)}
+
+.targets{display:flex; flex-wrap:wrap; gap:4px; min-width:150px}
+.tchip{
+  font-family:var(--mono); font-size:11.5px; font-variant-numeric:tabular-nums;
+  background:var(--accent-soft); color:var(--accent);
+  padding:2px 6px; border-radius:2px; white-space:nowrap;
+}
+.xexp{font-size:12.5px; color:var(--ink-2); max-width:190px; line-height:1.35}
+
+.delta{font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums; font-weight:500; white-space:nowrap; text-align:right}
+.delta.up{color:var(--gain)} .delta.down{color:var(--loss)}
+
+/* progress-to-target rail (log scale) */
+.rail{min-width:160px; display:flex; flex-direction:column; gap:5px}
+.track{position:relative; height:7px; background:var(--surface-2); border:1px solid var(--line); border-radius:1px}
+.fill{position:absolute; inset:0 auto 0 0; background:var(--gain); opacity:.4}
+.fill.down{background:var(--loss)}
+.mark{position:absolute; top:-2px; bottom:-2px; width:1px; background:var(--line-2)}
+.dot{position:absolute; top:50%; width:8px; height:8px; margin:-4px 0 0 -4px; border-radius:50%; background:var(--gain); border:1.5px solid var(--surface)}
+.dot.down{background:var(--loss)}
+.raillab{display:flex; justify-content:space-between; font-family:var(--mono); font-size:10px; color:var(--ink-3)}
+.dash{color:var(--ink-3); font-family:var(--mono); font-size:13px}
+
+/* ---------- notes ---------- */
+.notes{background:var(--surface); border:1px solid var(--line); padding:22px 24px; display:flex; flex-direction:column; gap:14px}
+.notes h2{font-family:var(--display); font-weight:600; font-size:19px; letter-spacing:-.015em; margin:0}
+.notes ul{margin:0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:9px}
+.notes li{display:grid; grid-template-columns:64px 1fr; gap:12px; font-size:13.5px; color:var(--ink-2); align-items:baseline}
+.notes li b{font-family:var(--mono); font-size:11.5px; color:var(--ink); letter-spacing:.03em}
+.legend{font-size:13px; color:var(--ink-2); max-width:78ch}
+.legend code{font-family:var(--mono); font-size:12px; background:var(--surface-2); padding:1px 5px; border:1px solid var(--line)}
+
+@media (max-width:640px){
+  .wrap{padding:22px 14px 56px}
+  .c-coin{position:static}
+  .notes li{grid-template-columns:1fr; gap:2px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important; animation:none!important}}
+
+/* ---------- partea 2: trade-uri ---------- */
+.partline{display:flex; align-items:center; gap:16px; margin-top:14px}
+.partline::after{content:""; flex:1; height:1px; background:var(--line-2)}
+.parttag{
+  font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ground); background:var(--ink); padding:5px 10px; border-radius:2px; white-space:nowrap;
+}
+.parthead{display:flex; flex-direction:column; gap:8px; max-width:66ch}
+.parthead h2{font-family:var(--display); font-weight:800; font-size:clamp(23px,3vw,32px); letter-spacing:-.022em; margin:0; text-wrap:balance}
+.parthead p{margin:0; color:var(--ink-2); font-size:14.5px}
+
+.tcards{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:14px}
+.tcard{background:var(--surface); border:1px solid var(--line); padding:16px 18px 18px; display:flex; flex-direction:column; gap:13px}
+.tcard.won{border-left:3px solid var(--gain)}
+.tcard.flat{border-left:3px solid var(--line-2)}
+
+.thead{display:flex; align-items:center; flex-wrap:wrap; gap:7px}
+.tid{font-family:var(--mono); font-size:11px; color:var(--ink-3)}
+.thead .tick{font-size:17px}
+.badge{font-family:var(--mono); font-size:10px; letter-spacing:.06em; padding:3px 6px; border-radius:2px; white-space:nowrap}
+.badge.long{background:var(--gain-soft); color:var(--gain)}
+.badge.spot{background:var(--bc-soft); color:var(--bc)}
+.badge.call{background:var(--lc-soft); color:var(--lc)}
+.badge.risk{background:var(--loss-soft); color:var(--loss)}
+.tdate{margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3)}
+
+.plrow{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap}
+.pl{font-family:var(--display); font-weight:600; font-size:30px; letter-spacing:-.025em; font-variant-numeric:tabular-nums; line-height:1}
+.pl.up{color:var(--gain)} .pl.down{color:var(--loss)}
+.plhint{font-size:12.5px; color:var(--ink-2)}
+
+/* ladder — conventia ei: TP albastru, SL gri */
+.ladder{display:flex; flex-direction:column; gap:7px; padding-top:4px}
+.lad{position:relative; height:8px; background:var(--surface-2); border:1px solid var(--line)}
+.lad .seg{position:absolute; top:0; bottom:0; background:var(--gain); opacity:.32}
+.lad .seg.down{background:var(--loss)}
+.lad .tpm{position:absolute; top:-4px; bottom:-4px; width:2px; background:var(--tp)}
+.lad .slm{position:absolute; top:-4px; bottom:-4px; width:2px; background:var(--sl)}
+.lad .entm{position:absolute; top:-5px; bottom:-5px; width:1px; background:var(--ink)}
+.lad .now{position:absolute; top:50%; width:10px; height:10px; margin:-5px 0 0 -5px; border-radius:50%;
+          background:var(--gain); border:2px solid var(--surface); box-shadow:0 0 0 1px var(--gain)}
+.lad .now.down{background:var(--loss); box-shadow:0 0 0 1px var(--loss)}
+.ladlab{display:flex; justify-content:space-between; font-family:var(--mono); font-size:10px; color:var(--ink-3)}
+.ladkey{display:flex; gap:12px; font-family:var(--mono); font-size:10px; color:var(--ink-3); flex-wrap:wrap}
+.ladkey i{display:inline-block; width:9px; height:2px; vertical-align:middle; margin-right:4px}
+.ladkey .k-tp i{background:var(--tp)} .ladkey .k-sl i{background:var(--sl)} .ladkey .k-e i{background:var(--ink)}
+
+.stats{display:grid; grid-template-columns:1fr 1fr; gap:9px 14px; margin:0}
+.stats > div{display:flex; flex-direction:column; gap:1px; min-width:0}
+.stats dt{font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3)}
+.stats dd{margin:0; font-family:var(--mono); font-size:12.5px; font-variant-numeric:tabular-nums; color:var(--ink)}
+.stats dd .sub{color:var(--ink-2)}
+.stats dd .g{color:var(--gain)} .stats dd .r{color:var(--loss)}
+.tnote{margin:0; font-size:12.5px; color:var(--ink-2); line-height:1.45; border-top:1px solid var(--line); padding-top:11px}
+
+.verdict{background:var(--surface); border:1px solid var(--line); padding:22px 24px; display:flex; flex-direction:column; gap:12px}
+.verdict h3{font-family:var(--display); font-weight:600; font-size:18px; letter-spacing:-.015em; margin:0}
+.verdict p{margin:0; font-size:14px; color:var(--ink-2); max-width:80ch}
+.verdict strong{color:var(--ink)}
+@media (max-width:400px){.stats{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+
+  <header>
+    <div class="title-block">
+      <h1>Portofoliu Rigo <span class="yr">2028</span></h1>
+      <p class="sub">Toate monedele long term din portofoliul public al <strong>@RAFAELA_RIGO_</strong> — prețul ei de intrare, țintele declarate și cât drum s-a făcut până acum.</p>
+      <p class="disclaimer">Urmărire personală a unor postări publice. Nu e material oficial al contului și nu e sfat financiar. Cifrele de intrare și țintele îi aparțin ei; prețurile curente sunt de la CoinGecko.</p>
+    </div>
+    <div class="stamp">
+      <b id="stamp">Prețuri: 7 sep 2026, 00:05</b>
+      <span>sursă CoinGecko</span>
+      <span>valori înghețate la generare</span>
+    </div>
+  </header>
+
+  <section class="tiles" id="tiles" aria-label="Sumar"></section>
+
+  <div class="controls">
+    <input class="search" id="q" type="search" placeholder="Caută ticker, nume sau sector…" aria-label="Caută monedă">
+    <div class="pills" id="filters" role="group" aria-label="Filtre">
+      <button class="pill" data-f="all" aria-pressed="true">Toate</button>
+      <button class="pill" data-f="bc" aria-pressed="false">Blue chip</button>
+      <button class="pill" data-f="lc" aria-pressed="false">Low cap</button>
+      <button class="pill" data-f="call" aria-pressed="false">Cu call</button>
+      <button class="pill" data-f="nocall" aria-pressed="false">Fără call</button>
+    </div>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table id="tbl">
+      <thead><tr id="hrow"></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <section class="notes">
+    <h2>Cum se citește</h2>
+    <p class="legend">
+      <b>Intrare R.</b> e prețul din postarea ei; la <code>FET</code> e prețul ei real de cumpărare, singura excepție.
+      <b>x așteptat</b> sunt multiplii pe care i-a declarat ea, raportați la intrarea ei.
+      <b>x rămas</b> e cât mai e de la prețul de azi până la ținta ei maximă.
+      Bara <b>Drum spre țintă</b> e pe scară logaritmică — altfel, la ținte de 100x, tot drumul real ar arăta lipit de zero. Liniuțele de pe bară sunt țintele intermediare.
+    </p>
+    <h2>Note pe rânduri</h2>
+    <ul id="notes"></ul>
+  </section>
+
+  <div class="partline"><span class="parttag">Partea 2</span></div>
+
+  <div class="parthead">
+    <h2>Trade-urile pe termen scurt</h2>
+    <p>Pozițiile pe care le-a publicat cu intrare, take-profit și stop loss. Convenția din chart-urile ei: <strong>TP-urile albastre, SL-ul gri</strong>. Aici sunt marcate la fel.</p>
+  </div>
+
+  <section class="tiles" id="ttiles" aria-label="Sumar trade-uri"></section>
+  <div class="tcards" id="tcards"></div>
+
+  <section class="verdict" id="verdict"></section>
+</div>
+
+<script>
+
+const CGID = {TAO:"bittensor",FET:"fetch-ai",ALGO:"algorand",RENDER:"render-token",INJ:"injective-protocol",
+SUI:"sui",NEAR:"near",ONDO:"ondo-finance",SOL:"solana",LINK:"chainlink",AVAX:"avalanche-2",DOGE:"dogecoin",
+BTC:"bitcoin",ZBT:"zerobase",TIA:"celestia",NOS:"nosana",ZEN:"zencash",GRT:"the-graph",GMX:"gmx",ZK:"zksync",
+APR:"apriori",PEAQ:"peaq-2",ORAI:"oraichain-token",PROPS:"propbase",WIN:"wink",TLOS:"telos",FIRO:"zcoin",
+MON:"monad",HEI:"heima",HOT:"holotoken",AKT:"akash-network",COTI:"coti",XAI:"xai-blockchain",
+DOT:"polkadot",ICP:"internet-computer",SUSHI:"sushi"};
+
+const LUNI = ["ian","feb","mar","apr","mai","iun","iul","aug","sep","oct","noi","dec"];
+function acum(){
+  const d = new Date();
+  const p = n => String(n).padStart(2,"0");
+  return d.getDate()+" "+LUNI[d.getMonth()]+" "+d.getFullYear()+", "+p(d.getHours())+":"+p(d.getMinutes());
+}
+
+const API = "https://api.coingecko.com/api/v3/";
+async function preturiLive(){
+  const ids = [...new Set(Object.values(CGID))].join(",");
+  const [pr, bt] = await Promise.allSettled([
+    fetch(API+"simple/price?ids="+ids+"&vs_currencies=usd&include_market_cap=true").then(r=>r.ok?r.json():Promise.reject(r.status)),
+    fetch(API+"coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily").then(r=>r.ok?r.json():Promise.reject(r.status))
+  ]);
+  if (pr.status !== "fulfilled" || Object.keys(pr.value||{}).length < 30) return null;
+  let btc30 = null;
+  if (bt.status === "fulfilled" && bt.value?.prices?.length > 1){
+    const q = bt.value.prices;
+    btc30 = Math.round((q[q.length-1][1]/q[0][1] - 1) * 1000) / 10;
+  }
+  return {P: pr.value, btc30};
+}
+
+async function boot(){
+const LIVE = await preturiLive().catch(()=>null);
+const META = {"stamp":"7 sep 2026, 00:05","btc30":23.2};
+const DATA = [{"t":"TAO","n":"Bittensor","s":"AI descentralizat","c":"bc","d":"aug 2026","e":199.98,"tg":[1292.05],"x":"9x de la bottom $142","p":268.23,"m":2573486224.9710035,"note":""},{"t":"FET","n":"Artificial Superintelligence","s":"AI","c":"bc","d":"04.07.2026","e":0.1745,"tg":[4.35],"x":"30x","p":0.176886,"m":409078320.4060358,"note":"pret intrare = pretul ei real de cumparare"},{"t":"ALGO","n":"Algorand","s":"RWA / L1","c":"bc","d":"02.08.2026","e":0.078,"tg":[4.65],"x":"60x","p":0.096171,"m":869925384.3311473,"note":"a cumparat pe 01.09"},{"t":"RENDER","n":"Render","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":1.56,"m":809380657.0238625,"note":""},{"t":"INJ","n":"Injective","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":5.17,"m":517072910.8438847,"note":""},{"t":"SUI","n":"Sui","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":0.815873,"m":3346068677.9643297,"note":"are doar trade scurt, nu call long term"},{"t":"NEAR","n":"NEAR Protocol","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":2.42,"m":3161228025.936655,"note":""},{"t":"ONDO","n":"Ondo","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":0.380356,"m":1851572499.816345,"note":""},{"t":"SOL","n":"Solana","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":105.83,"m":61959398517.06025,"note":""},{"t":"LINK","n":"Chainlink","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":13.17,"m":9850964587.36641,"note":""},{"t":"AVAX","n":"Avalanche","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":7.8,"m":3368853416.7978153,"note":""},{"t":"DOGE","n":"Dogecoin","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":0.090334,"m":14074938106.883467,"note":""},{"t":"BTC","n":"Bitcoin","s":"","c":"bc","d":null,"e":null,"tg":[],"x":null,"p":79931,"m":1605038495871.8032,"note":""},{"t":"ZBT","n":"Zerobase","s":"tehnic","c":"lc","d":"29.07.2026","e":0.11317,"tg":[0.27603],"x":"40x","p":0.085424,"m":27586759.360734053,"note":"publicat doar Target 1"},{"t":"TIA","n":"Celestia","s":"modular DA","c":"lc","d":"30.07.2026","e":0.3445,"tg":[4.34,8.33],"x":"16x / 30x","p":0.420239,"m":405309320.8708405,"note":"zona acumulare $0,29-0,44"},{"t":"NOS","n":"Nosana","s":"DePIN / GPU AI","c":"lc","d":"06.08.2026","e":0.23,"tg":[9.0],"x":"60x-80x","p":0.282154,"m":28215282.11606472,"note":"tinta din chart = 39x, sub cei 60-80x declarati"},{"t":"ZEN","n":"Horizen","s":"privacy L3 pe Base","c":"lc","d":"aug 2026","e":4.0,"tg":[48,220,304],"x":"12x / 54x / 74x","p":7.36,"m":134857987.66279548,"note":"ea zice ca teza se implineste in ciclul URMATOR"},{"t":"GRT","n":"The Graph","s":"indexare date / AI","c":"lc","d":"aug 2026","e":0.01356,"tg":[0.29221,1.0],"x":"20x-22x / 70x","p":0.01941391,"m":212351133.59148943,"note":"mcap-urile citate de ea sunt gresite"},{"t":"GMX","n":"GMX","s":"perpetual DEX","c":"lc","d":"aug 2026","e":6.84,"tg":[107.04],"x":"16x de la bottom","p":8.0,"m":83597858.11383541,"note":""},{"t":"ZK","n":"ZKsync","s":"L2 zk","c":"lc","d":"aug/sep","e":0.008381,"tg":[0.07311],"x":"10x (+1000%)","p":0.01095976,"m":113644156.36304653,"note":"a cumparat"},{"t":"APR","n":"aPriori","s":"MEV staking pe Monad","c":"lc","d":"aug/sep","e":0.2,"tg":[3.15,5.5,8.4,13.2,21.0],"x":"15-25x / 40-60x / 100x","p":0.201082,"m":55848456.312498085,"note":"depinde de succesul Monad"},{"t":"PEAQ","n":"peaq","s":"DePIN & Machinery","c":"lc","d":"26.08.2026","e":0.024,"tg":[0.53],"x":"43x de la ATL","p":0.0261017,"m":65289297.97733938,"note":""},{"t":"ORAI","n":"Oraichain","s":"oracol AI / L1","c":"lc","d":"aug/sep","e":0.27,"tg":[6.68,56.0],"x":"34x / 200x","p":0.390806,"m":7595693.938947706,"note":"'buy asap' (01.09)"},{"t":"PROPS","n":"Propbase","s":"RWA imobiliar (Aptos)","c":"lc","d":"aug/sep","e":0.0038,"tg":[0.135],"x":"40x","p":0.00456007,"m":2336499.563309466,"note":"cel mai mic mcap"},{"t":"WIN","n":"WINkLink","s":"oracol TRON","c":"lc","d":"03.09.2026","e":3.094e-05,"tg":[0.00079],"x":"24x / 46x de la bottom","p":3.585e-05,"m":35623060.15159167,"note":""},{"t":"TLOS","n":"Telos","s":"L1 EVM","c":"lc","d":"04.09.2026","e":0.018469,"tg":[1.94],"x":"100x / 215x de la bottom","p":0.01986848,"m":8961325.486271506,"note":"call ulterior listei"},{"t":"FIRO","n":"Firo","s":"privacy","c":"lc","d":"05.09.2026","e":0.81,"tg":[59.94],"x":"74x","p":0.941558,"m":17894032.064740542,"note":"call ulterior; tinta dedusa 74x x $0,81"},{"t":"MON","n":"Monad","s":"L1 EVM","c":"lc","d":"aug/sep","e":0.0267,"tg":[],"x":"3x-6x, max 10x","p":0.02686195,"m":317677615.46633726,"note":"call ulterior, mentionat langa APR"},{"t":"HEI","n":"Heima","s":"","c":"lc","d":null,"e":null,"tg":[],"x":null,"p":0.137358,"m":11192698.293034965,"note":""},{"t":"HOT","n":"Holo","s":"","c":"lc","d":null,"e":null,"tg":[],"x":null,"p":0.00038312,"m":67760217.02362934,"note":""},{"t":"AKT","n":"Akash Network","s":"","c":"lc","d":null,"e":null,"tg":[],"x":null,"p":0.557695,"m":165887772.37737712,"note":""},{"t":"COTI","n":"COTI","s":"","c":"lc","d":null,"e":null,"tg":[],"x":null,"p":0.01729864,"m":51519728.33271985,"note":""},{"t":"XAI","n":"Xai","s":"","c":"lc","d":null,"e":null,"tg":[],"x":null,"p":0.00770873,"m":16196517.06710989,"note":""},{"t":"MO","n":"neidentificat","s":"","c":"lc","d":null,"e":null,"tg":[],"x":null,"p":null,"m":null,"note":"moneda neidentificata"}];
+
+if (LIVE){
+  for (const r of DATA){
+    const q = LIVE.P[CGID[r.t]];
+    if (q && typeof q.usd === "number"){ r.p = q.usd; r.m = q.usd_market_cap ?? null; }
+  }
+  META.stamp = acum();
+  if (LIVE.btc30 !== null) META.btc30 = LIVE.btc30;
+}
+
+
+const HEADS = [
+  {k:'i',    t:'#',            cls:'idx static',  sort:null},
+  {k:'t',    t:'Monedă',       cls:'c-coin',      sort:'str'},
+  {k:'c',    t:'Categorie',    cls:'',            sort:'str'},
+  {k:'d',    t:'Data call',    cls:'',            sort:'date'},
+  {k:'e',    t:'Intrare R.',   cls:'num',         sort:'num'},
+  {k:'tg',   t:'Ținte',        cls:'static',      sort:null},
+  {k:'x',    t:'x așteptat',   cls:'static',      sort:null},
+  {k:'p',    t:'Preț acum',    cls:'num',         sort:'num'},
+  {k:'m',    t:'Mcap',         cls:'num',         sort:'num'},
+  {k:'delta',t:'Δ vs R.',      cls:'num',         sort:'num'},
+  {k:'xram', t:'x rămas',      cls:'num',         sort:'num'},
+  {k:'rail', t:'Drum spre țintă', cls:'static',   sort:null},
+];
+
+/* ---- formatting ---- */
+const ro = s => String(s).replace(/\./g, ',');
+function fp(v){
+  if(v==null) return null;
+  let s;
+  if(v>=1000) s = Math.round(v).toLocaleString('ro-RO');
+  else if(v>=100) s = v.toFixed(2);
+  else if(v>=1)   s = v.toFixed(3).replace(/0+$/,'').replace(/\.$/,'');
+  else if(v>=0.01) s = v.toFixed(4);
+  else if(v>=0.0001) s = v.toFixed(6);
+  else s = v.toFixed(8);
+  return '$' + (v>=1000 ? s : ro(s));
+}
+function fm(v){
+  if(v==null) return null;
+  if(v>=1e9) return ro((v/1e9).toFixed(2))+' B';
+  if(v>=1e8) return Math.round(v/1e6)+' M';
+  return ro((v/1e6).toFixed(1))+' M';
+}
+const MONTHS={ian:0,feb:1,mar:2,apr:3,mai:4,iun:5,iul:6,aug:7,sep:8,oct:9,noi:10,dec:11};
+function dsort(d){
+  if(!d) return -1;
+  const m = d.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+  if(m) return new Date(+m[3], +m[2]-1, +m[1]).getTime();
+  if(/aug/.test(d)) return new Date(2026,7,15).getTime();
+  if(/sep/.test(d)) return new Date(2026,8,1).getTime();
+  return 0;
+}
+
+/* ---- derived fields ---- */
+DATA.forEach((r,ix)=>{
+  r.i = ix+1;
+  r.tmax = r.tg && r.tg.length ? r.tg[r.tg.length-1] : null;
+  r.delta = (r.p!=null && r.e!=null) ? (r.p/r.e-1)*100 : null;
+  r.xram  = (r.p!=null && r.tmax!=null) ? r.tmax/r.p : null;
+  r.hasCall = r.e!=null;
+  r.blob = (r.t+' '+r.n+' '+r.s).toLowerCase();
+});
+
+/* ---- summary tiles ---- */
+(function(){
+  const withCall = DATA.filter(r=>r.delta!=null);
+  const up = withCall.filter(r=>r.delta>0);
+  const avg = withCall.reduce((a,r)=>a+r.delta,0)/withCall.length;
+  const best = withCall.reduce((a,r)=>r.delta>a.delta?r:a);
+  const worst= withCall.reduce((a,r)=>r.delta<a.delta?r:a);
+  const tiles = [
+    {lab:'Monede urmărite', val:DATA.length, hint:DATA.filter(r=>r.c==='bc').length+' blue chip · '+DATA.filter(r=>r.c==='lc').length+' low cap'},
+    {lab:'Cu call public',  val:withCall.length, hint:(DATA.length-withCall.length)+' încă fără preț de intrare'},
+    {lab:'Pe plus de la call', val:up.length+'/'+withCall.length, hint:'medie '+(avg>=0?'+':'')+ro(avg.toFixed(1))+'%', cls:avg>=0?'up':'down'},
+    {lab:'Extreme', val:best.t+' / '+worst.t, hint:'+'+ro(best.delta.toFixed(1))+'% · '+ro(worst.delta.toFixed(1))+'%'},
+  ];
+  document.getElementById('tiles').innerHTML = tiles.map(t=>
+    `<div class="tile"><span class="lab">${t.lab}</span><span class="val ${t.cls||''}">${t.val}</span><span class="hint">${t.hint}</span></div>`).join('');
+})();
+
+/* ---- notes ---- */
+document.getElementById('notes').innerHTML = DATA.filter(r=>r.note)
+  .map(r=>`<li><b>${r.t}</b><span>${r.note}</span></li>`).join('');
+
+/* ---- rail ---- */
+function rail(r){
+  if(r.e==null || r.tmax==null || r.p==null) return '<span class="dash">—</span>';
+  const span = Math.log(r.tmax/r.e);
+  const pos  = Math.max(0, Math.min(1, Math.log(r.p/r.e)/span));
+  const down = r.p < r.e;
+  const ticks = (r.tg||[]).slice(0,-1)
+    .map(t=>`<span class="mark" style="left:${(Math.log(t/r.e)/span*100).toFixed(2)}%"></span>`).join('');
+  return `<div class="rail">
+    <div class="track">
+      <span class="fill ${down?'down':''}" style="width:${(pos*100).toFixed(2)}%"></span>
+      ${ticks}
+      <span class="dot ${down?'down':''}" style="left:${(pos*100).toFixed(2)}%"></span>
+    </div>
+    <div class="raillab"><span>${fp(r.e)}</span><span>${fp(r.tmax)}</span></div>
+  </div>`;
+}
+
+/* ---- render ---- */
+let sortKey='i', sortDir=1, filter='all';
+
+document.getElementById('hrow').innerHTML = HEADS.map(h=>{
+  const s = h.sort ? ` tabindex="0" role="button" data-k="${h.k}"` : '';
+  return `<th class="${h.cls}"${s}>${h.t}${h.sort?'<span class="arrow">▲</span>':''}</th>`;
+}).join('');
+
+function render(){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  let rows = DATA.filter(r=>{
+    if(filter==='bc' && r.c!=='bc') return false;
+    if(filter==='lc' && r.c!=='lc') return false;
+    if(filter==='call' && !r.hasCall) return false;
+    if(filter==='nocall' && r.hasCall) return false;
+    return !q || r.blob.includes(q);
+  });
+
+  const h = HEADS.find(x=>x.k===sortKey);
+  rows.sort((a,b)=>{
+    let va,vb;
+    if(h.sort==='date'){ va=dsort(a.d); vb=dsort(b.d); }
+    else if(h.sort==='str'){ va=(a[sortKey]||'').toString(); vb=(b[sortKey]||'').toString(); return va.localeCompare(vb,'ro')*sortDir; }
+    else { va=a[sortKey]; vb=b[sortKey]; }
+    const na = va==null, nb = vb==null;
+    if(na && nb) return a.i-b.i;
+    if(na) return 1;              // gol mereu la coadă
+    if(nb) return -1;
+    return (va-vb)*sortDir;
+  });
+
+  document.getElementById('tbody').innerHTML = rows.map(r=>{
+    const d  = r.delta;
+    const dc = d==null ? '' : (d>=0?'up':'down');
+    const dt = d==null ? '<span class="dash">n/a</span>'
+               : `<span class="delta ${dc}">${d>=0?'+':''}${ro(d.toFixed(1))}%</span>`;
+    const chips = (r.tg&&r.tg.length)
+      ? `<div class="targets">${r.tg.map(t=>`<span class="tchip">${fp(t)}</span>`).join('')}</div>`
+      : '<span class="dash">—</span>';
+    const na = '<span class="dash">n/a</span>';
+    return `<tr class="${r.hasCall?'':'nocall'}">
+      <td class="idx">${r.i}</td>
+      <td class="c-coin">
+        <div class="tick">${r.t}</div>
+        <div class="cname">${r.n}</div>
+        ${r.s?`<div class="csec">${r.s}</div>`:''}
+      </td>
+      <td><span class="cat ${r.c}">${r.c==='bc'?'Blue chip':'Low cap'}</span></td>
+      <td class="num">${r.d||na}</td>
+      <td class="num">${fp(r.e)||na}</td>
+      <td>${chips}</td>
+      <td><span class="xexp">${r.x||'<span class="dash">n/a</span>'}</span></td>
+      <td class="num">${fp(r.p)||na}</td>
+      <td class="num">${fm(r.m)||na}</td>
+      <td class="num">${dt}</td>
+      <td class="num">${r.xram!=null?ro(r.xram.toFixed(1))+'x':na}</td>
+      <td>${rail(r)}</td>
+    </tr>`;
+  }).join('');
+
+  document.getElementById('count').textContent = rows.length+' din '+DATA.length+' monede';
+
+  document.querySelectorAll('#hrow th').forEach(th=>{
+    const k = th.dataset.k;
+    if(!k) return;
+    if(k===sortKey){ th.setAttribute('aria-sort', sortDir>0?'ascending':'descending');
+                     th.querySelector('.arrow').textContent = sortDir>0?'▲':'▼'; }
+    else { th.removeAttribute('aria-sort'); th.querySelector('.arrow').textContent='▲'; }
+  });
+}
+
+function setSort(k){
+  const h = HEADS.find(x=>x.k===k);
+  if(!h || !h.sort) return;
+  if(sortKey===k) sortDir = -sortDir;
+  else { sortKey = k; sortDir = (h.sort==='str') ? 1 : -1; }  // numeric: mare→mic la primul clic
+  render();
+}
+
+document.getElementById('hrow').addEventListener('click', e=>{
+  const th = e.target.closest('th[data-k]'); if(th) setSort(th.dataset.k);
+});
+document.getElementById('hrow').addEventListener('keydown', e=>{
+  if(e.key!=='Enter' && e.key!==' ') return;
+  const th = e.target.closest('th[data-k]'); if(th){ e.preventDefault(); setSort(th.dataset.k); }
+});
+document.getElementById('q').addEventListener('input', render);
+document.getElementById('filters').addEventListener('click', e=>{
+  const b = e.target.closest('.pill'); if(!b) return;
+  filter = b.dataset.f;
+  document.querySelectorAll('#filters .pill').forEach(p=>p.setAttribute('aria-pressed', String(p===b)));
+  render();
+});
+
+render();
+
+/* ================= PARTEA 2 — trade-uri ================= */
+const TRADES = [{"id":"1.1","t":"DOT","dir":"LONG","risc":"","d":"04.08.2026","e":0.84,"sl":0.783,"tps":[0.884,0.95,1.225,1.342],"p":0.967424,"note":"Prima intrare pe DOT. TP1 și TP2 depășite de atunci.","pl":15.16952380952381,"hit":2,"conf":0,"nxt":1.225,"d_nxt":26.624933844932542,"d_sl":23.553512132822462,"rr":8.80701754385966,"stopped":false},{"id":"1.2","t":"DOT","dir":"LONG","risc":"high risk","d":"02.09.2026","e":0.872,"sl":0.829,"tps":[0.95,1.034],"p":0.967424,"note":"A doua intrare pe DOT, marcată de ea „high risk”.","pl":10.943119266055046,"hit":1,"conf":0,"nxt":1.034,"d_nxt":6.8817808944165115,"d_sl":16.69770808202653,"rr":3.7674418604651136,"stopped":false},{"id":"2.1","t":"ALGO","dir":"LONG","risc":"","d":"04.08.2026","e":0.0898,"sl":0.0804,"tps":[0.0949,0.0969,0.1049,0.1198,0.1268],"p":0.096171,"note":"Cel mai larg set de TP-uri — cinci trepte.","pl":7.094654788418708,"hit":1,"conf":1,"nxt":0.0969,"d_nxt":0.7580247683813157,"d_sl":19.615671641791053,"rr":3.9361702127659544,"stopped":false},{"id":"2.2","t":"ALGO","dir":"LONG","risc":"high risk","d":"02.09.2026","e":0.0881,"sl":0.086,"tps":[0.0949,0.1006],"p":0.096171,"note":"Singurul trade cu rezultat confirmat public: TP1 atins pe 3 sep, +7,7%, SL mutat în profit.","pl":9.161180476731001,"hit":1,"conf":1,"nxt":0.1006,"d_nxt":4.605338407628068,"d_sl":11.826744186046522,"rr":5.952380952380938,"stopped":false},{"id":"3.1","t":"ICP","dir":"SPOT","risc":"","d":"01.09.2026","e":2.401,"sl":null,"tps":[4.521,6.703],"p":2.69,"note":"Spot, nu leverage. Fără SL declarat — deci fără invalidare definită.","pl":12.036651395251985,"hit":0,"conf":0,"nxt":4.521,"d_nxt":68.06691449814126,"d_sl":null,"rr":null,"stopped":false},{"id":"4.1","t":"SUI","dir":"LONG","risc":"","d":"05.09.2026","e":0.7663,"sl":0.7272,"tps":[0.8128,0.8814,0.9536],"p":0.815873,"note":"Cel mai recent trade. Încă sub primul TP.","pl":6.4691374135456,"hit":1,"conf":0,"nxt":0.8814,"d_nxt":8.031519611508164,"d_sl":12.193756875687578,"rr":4.790281329923271,"stopped":false},{"id":"5.1","t":"SUSHI","dir":"CALL","risc":"","d":"07.08.2026","e":0.1648,"sl":null,"tps":[0.5321,0.9228],"p":0.245664,"note":"Repostat pe 6 sep ca dovadă că poziția e pe plus. Fără mcap, supply sau sector în postare — cel mai subțire call din set.","pl":49.067961165048544,"hit":0,"conf":0,"nxt":0.5321,"d_nxt":116.59665233815292,"d_sl":null,"rr":null,"stopped":false}];
+
+if (LIVE){
+  for (const x of TRADES){
+    const q = LIVE.P[CGID[x.t]];
+    if (!q || typeof q.usd !== "number") continue;
+    const p = q.usd; x.p = p;
+    x.pl = (p / x.e - 1) * 100;
+    x.hit = Math.max(x.tps.filter(t => p >= t).length, x.conf || 0);
+    x.nxt = x.tps.find(t => p < t) ?? null;
+    x.d_nxt = x.nxt ? (x.nxt / p - 1) * 100 : null;
+    x.d_sl = x.sl ? (p / x.sl - 1) * 100 : null;
+    x.rr = (x.sl && x.e > x.sl) ? (x.tps[x.tps.length-1] - x.e) / (x.e - x.sl) : null;
+    x.stopped = x.sl ? p <= x.sl : false;
+  }
+}
+
+
+function pct(v, dec){ const n = (v>=0?'+':'') + v.toFixed(dec==null?1:dec); return ro(n)+'%'; }
+
+(function(){
+  const up = TRADES.filter(t=>t.pl>0).length;
+  const avg = TRADES.reduce((a,t)=>a+t.pl,0)/TRADES.length;
+  const best = TRADES.reduce((a,t)=>t.pl>a.pl?t:a);
+  const withSL = TRADES.filter(t=>t.sl!=null);
+  const tiles = [
+    {lab:'Trade-uri publicate', val:TRADES.length, hint:withSL.length+' cu stop loss · '+(TRADES.length-withSL.length)+' fără'},
+    {lab:'Pe plus acum', val:up+'/'+TRADES.length, hint:'niciunul stopat', cls:'up'},
+    {lab:'P/L mediu', val:pct(avg), hint:'de la intrarea ei, neponderat', cls:avg>=0?'up':'down'},
+    {lab:'Cel mai bun', val:best.t, hint:pct(best.pl)+' de la '+best.d, cls:'up'},
+  ];
+  document.getElementById('ttiles').innerHTML = tiles.map(t=>
+    `<div class="tile"><span class="lab">${t.lab}</span><span class="val ${t.cls||''}">${t.val}</span><span class="hint">${t.hint}</span></div>`).join('');
+})();
+
+function ladder(x){
+  const lo = x.sl!=null ? Math.min(x.sl, x.e) : x.e;
+  const hi = x.tps[x.tps.length-1];
+  const at = v => Math.max(0, Math.min(100, (v-lo)/(hi-lo)*100));
+  const pe = at(x.e), pp = at(x.p), down = x.p < x.e;
+  const a = Math.min(pe,pp), b = Math.max(pe,pp);
+  return `<div class="ladder">
+    <div class="lad">
+      <span class="seg ${down?'down':''}" style="left:${a.toFixed(2)}%;width:${(b-a).toFixed(2)}%"></span>
+      ${x.sl!=null?`<span class="slm" style="left:${at(x.sl).toFixed(2)}%"></span>`:''}
+      <span class="entm" style="left:${pe.toFixed(2)}%"></span>
+      ${x.tps.map(t=>`<span class="tpm" style="left:${at(t).toFixed(2)}%"></span>`).join('')}
+      <span class="now ${down?'down':''}" style="left:${pp.toFixed(2)}%"></span>
+    </div>
+    <div class="ladlab"><span>${fp(lo)}</span><span>${fp(hi)}</span></div>
+    <div class="ladkey">
+      <span class="k-e"><i></i>intrare ${fp(x.e)}</span>
+      ${x.sl!=null?`<span class="k-sl"><i></i>SL ${fp(x.sl)}</span>`:'<span class="k-sl">fără SL</span>'}
+      <span class="k-tp"><i></i>${x.tps.length} TP</span>
+    </div>
+  </div>`;
+}
+
+document.getElementById('tcards').innerHTML = TRADES.map(x=>{
+  const up = x.pl >= 0;
+  const dirCls = x.dir==='LONG'?'long':(x.dir==='SPOT'?'spot':'call');
+  const nxt = x.nxt!=null
+    ? `${fp(x.nxt)} <span class="sub">· <span class="g">${pct(x.d_nxt)}</span></span>`
+    : 'toate atinse';
+  const sl = x.sl!=null
+    ? `${fp(x.sl)} <span class="sub">· <span class="r">${pct(x.d_sl)}</span></span>`
+    : '<span class="sub">nedeclarat</span>';
+  return `<article class="tcard ${x.hit>0?'won':'flat'}">
+    <div class="thead">
+      <span class="tid">${x.id}</span>
+      <span class="tick">${x.t}</span>
+      <span class="badge ${dirCls}">${x.dir}</span>
+      ${x.risc?`<span class="badge risk">${x.risc}</span>`:''}
+      <span class="tdate">${x.d}</span>
+    </div>
+    <div class="plrow">
+      <span class="pl ${up?'up':'down'}">${pct(x.pl)}</span>
+      <span class="plhint">de la intrarea ei · TP ${x.hit}/${x.tps.length} atinse</span>
+    </div>
+    ${ladder(x)}
+    <dl class="stats">
+      <div><dt>Intrare</dt><dd>${fp(x.e)}</dd></div>
+      <div><dt>Preț acum</dt><dd>${fp(x.p)}</dd></div>
+      <div><dt>Stop loss</dt><dd>${sl}</dd></div>
+      <div><dt>Următorul TP</dt><dd>${nxt}</dd></div>
+      <div><dt>R:R inițial</dt><dd>${x.rr?('1:'+ro(x.rr.toFixed(1))):'<span class="sub">n/a</span>'}</dd></div>
+      <div><dt>Ținta finală</dt><dd>${fp(x.tps[x.tps.length-1])}</dd></div>
+    </dl>
+    <p class="tnote">${x.note}</p>
+  </article>`;
+}).join('');
+
+document.getElementById("stamp").textContent = "Prețuri: " + META.stamp;
+document.querySelector(".stamp span").textContent = LIVE ? "CoinGecko — live" : "CoinGecko — offline, valori salvate";
+
+document.getElementById('verdict').innerHTML = `
+  <h3>Ce spun cifrele</h3>
+  <p><strong>${TRADES.filter(t=>!t.stopped).length} din ${TRADES.length} trade-uri sunt pe plus și niciunul n-a fost stopat.</strong> Asta e real, dar acoperă o singură lună într-o piață în care BTC a ${META.btc30>=0?"urcat":"scăzut"} ${Math.abs(META.btc30).toFixed(1).replace(".",",")}% în 30 de zile. Într-un interval ca ăsta, aproape orice long pe alt-coin arată bine — testul vine la prima corecție serioasă.</p>
+  <p><strong>Un singur rezultat e confirmat public de ea:</strong> ALGO 2.2, TP1 atins pe 3 septembrie, +7,7%, cu SL mutat în profit. Pentru restul, „atins" e dedus din prețul de azi — dacă prețul a trecut prin TP și s-a întors, nu apare nicăieri un anunț de închidere. Fără istoric de închideri anunțate, rata reală de câștig nu se poate calcula.</p>
+  <p><strong>Două poziții n-au stop loss declarat:</strong> ICP (spot) și SUSHI. Fără SL nu există invalidare, deci nici R:R calculabil — sunt investiții pe termen scurt, nu trade-uri în sensul strict, chiar dacă apar în același flux.</p>
+  <p><strong>SUSHI e cazul special.</strong> ${(TRADES.find(t=>t.t==="SUSHI")?.pl ?? 0).toFixed(1).replace(".",",").replace("-","−").replace(/^(?!−)/,"+")}% de la call-ul din 7 august, dar postarea n-are mcap, supply, sector sau teză — doar „Easy money". A repostat-o pe 6 septembrie ca dovadă că poziția e în desfășurare și pe plus. Cine intră acum plătește un preț deja mult peste call, fără să știe unde e invalidarea.</p>
+`;
+
+
+}
+boot();
+</script>
+
+</body>
+</html>
