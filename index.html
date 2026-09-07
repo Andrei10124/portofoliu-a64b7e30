@@ -342,15 +342,19 @@ const LUNI = ["ian","feb","mar","apr","mai","iun","iul","aug","sep","oct","noi",
 function acum(){
   const d = new Date();
   const p = n => String(n).padStart(2,"0");
-  return d.getDate()+" "+LUNI[d.getMonth()]+" "+d.getFullYear()+", "+p(d.getHours())+":"+p(d.getMinutes());
+  return d.getDate()+" "+LUNI[d.getMonth()]+" "+d.getFullYear()+", "
+       +p(d.getHours())+":"+p(d.getMinutes())+":"+p(d.getSeconds());
 }
 
 const API = "https://api.coingecko.com/api/v3/";
 async function preturiLive(){
   const ids = [...new Set(Object.values(CGID))].join(",");
+  const nocache = { cache: "no-store", headers: { "Cache-Control": "no-cache" } };
+  const bust = "&_=" + Date.now();
+  const ia = u => fetch(API + u + bust, nocache).then(r => r.ok ? r.json() : Promise.reject(r.status));
   const [pr, bt] = await Promise.allSettled([
-    fetch(API+"simple/price?ids="+ids+"&vs_currencies=usd&include_market_cap=true").then(r=>r.ok?r.json():Promise.reject(r.status)),
-    fetch(API+"coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily").then(r=>r.ok?r.json():Promise.reject(r.status))
+    ia("simple/price?ids=" + ids + "&vs_currencies=usd&include_market_cap=true"),
+    ia("coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily")
   ]);
   if (pr.status !== "fulfilled" || Object.keys(pr.value||{}).length < 30) return null;
   let btc30 = null;
