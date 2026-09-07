@@ -224,6 +224,7 @@ tbody tr:hover .c-coin{background:var(--surface-2)}
 .badge.long{background:var(--gain-soft); color:var(--gain)}
 .badge.spot{background:var(--bc-soft); color:var(--bc)}
 .badge.call{background:var(--lc-soft); color:var(--lc)}
+.badge.short{background:var(--loss-soft); color:var(--loss)}
 .badge.risk{background:var(--loss-soft); color:var(--loss)}
 .tdate{margin-left:auto; font-family:var(--mono); font-size:11px; color:var(--ink-3)}
 
@@ -565,20 +566,30 @@ document.getElementById('filters').addEventListener('click', e=>{
 render();
 
 /* ================= PARTEA 2 — trade-uri ================= */
-const TRADES = [{"id":"1.1","t":"DOT","dir":"LONG","risc":"","d":"04.08.2026","e":0.84,"sl":0.783,"tps":[0.884,0.95,1.225,1.342],"p":0.967424,"note":"Prima intrare pe DOT. TP1 și TP2 depășite de atunci.","pl":15.16952380952381,"hit":2,"conf":0,"nxt":1.225,"d_nxt":26.624933844932542,"d_sl":23.553512132822462,"rr":8.80701754385966,"stopped":false},{"id":"1.2","t":"DOT","dir":"LONG","risc":"high risk","d":"02.09.2026","e":0.872,"sl":0.829,"tps":[0.95,1.034],"p":0.967424,"note":"A doua intrare pe DOT, marcată de ea „high risk”.","pl":10.943119266055046,"hit":1,"conf":0,"nxt":1.034,"d_nxt":6.8817808944165115,"d_sl":16.69770808202653,"rr":3.7674418604651136,"stopped":false},{"id":"2.1","t":"ALGO","dir":"LONG","risc":"","d":"04.08.2026","e":0.0898,"sl":0.0804,"tps":[0.0949,0.0969,0.1049,0.1198,0.1268],"p":0.096171,"note":"Cel mai larg set de TP-uri — cinci trepte.","pl":7.094654788418708,"hit":1,"conf":1,"nxt":0.0969,"d_nxt":0.7580247683813157,"d_sl":19.615671641791053,"rr":3.9361702127659544,"stopped":false},{"id":"2.2","t":"ALGO","dir":"LONG","risc":"high risk","d":"02.09.2026","e":0.0881,"sl":0.086,"tps":[0.0949,0.1006],"p":0.096171,"note":"Singurul trade cu rezultat confirmat public: TP1 atins pe 3 sep, +7,7%, SL mutat în profit.","pl":9.161180476731001,"hit":1,"conf":1,"nxt":0.1006,"d_nxt":4.605338407628068,"d_sl":11.826744186046522,"rr":5.952380952380938,"stopped":false},{"id":"3.1","t":"ICP","dir":"SPOT","risc":"","d":"01.09.2026","e":2.401,"sl":null,"tps":[4.521,6.703],"p":2.69,"note":"Spot, nu leverage. Fără SL declarat — deci fără invalidare definită.","pl":12.036651395251985,"hit":0,"conf":0,"nxt":4.521,"d_nxt":68.06691449814126,"d_sl":null,"rr":null,"stopped":false},{"id":"4.1","t":"SUI","dir":"LONG","risc":"","d":"05.09.2026","e":0.7663,"sl":0.7272,"tps":[0.8128,0.8814,0.9536],"p":0.815873,"note":"Cel mai recent trade. Încă sub primul TP.","pl":6.4691374135456,"hit":1,"conf":0,"nxt":0.8814,"d_nxt":8.031519611508164,"d_sl":12.193756875687578,"rr":4.790281329923271,"stopped":false},{"id":"5.1","t":"SUSHI","dir":"CALL","risc":"","d":"07.08.2026","e":0.1648,"sl":null,"tps":[0.5321,0.9228],"p":0.245664,"note":"Repostat pe 6 sep ca dovadă că poziția e pe plus. Fără mcap, supply sau sector în postare — cel mai subțire call din set.","pl":49.067961165048544,"hit":0,"conf":0,"nxt":0.5321,"d_nxt":116.59665233815292,"d_sl":null,"rr":null,"stopped":false}];
+const TRADES = [{"id":"1.1","t":"DOT","dir":"LONG","risc":"","d":"04.08.2026","e":0.84,"sl":0.783,"tps":[0.884,0.95,1.225,1.342],"p":1.091,"note":"Prima intrare pe DOT. TP1 și TP2 depășite de atunci.","pl":29.880952380952387,"hit":2,"conf":0,"nxt":1.225,"d_nxt":12.282309807516057,"d_sl":39.33588761174966,"rr":8.80701754385966,"stopped":false},{"id":"1.2","t":"DOT","dir":"LONG","risc":"high risk","d":"02.09.2026","e":0.872,"sl":0.829,"tps":[0.95,1.034],"p":1.091,"note":"A doua intrare pe DOT, marcată de ea „high risk”.","pl":25.114678899082566,"hit":2,"conf":0,"nxt":null,"d_nxt":null,"d_sl":31.604342581423396,"rr":3.7674418604651136,"stopped":false},{"id":"2.1","t":"ALGO","dir":"LONG","risc":"","d":"04.08.2026","e":0.0898,"sl":0.0804,"tps":[0.0949,0.0969,0.1049,0.1198,0.1268],"p":0.096034,"note":"Cel mai larg set de TP-uri — cinci trepte.","pl":6.942093541202654,"hit":1,"conf":1,"nxt":0.0969,"d_nxt":0.9017639585980008,"d_sl":19.445273631840788,"rr":3.9361702127659544,"stopped":false},{"id":"2.2","t":"ALGO","dir":"LONG","risc":"high risk","d":"02.09.2026","e":0.0881,"sl":0.086,"tps":[0.0949,0.1006],"p":0.096034,"note":"Singurul trade cu rezultat confirmat public: TP1 atins pe 3 sep, +7,7%, SL mutat în profit.","pl":9.00567536889898,"hit":1,"conf":1,"nxt":0.1006,"d_nxt":4.754566091176038,"d_sl":11.667441860465111,"rr":5.952380952380938,"stopped":false},{"id":"3.1","t":"ICP","dir":"SPOT","risc":"","d":"01.09.2026","e":2.401,"sl":null,"tps":[4.521,6.703],"p":3.03,"note":"Spot, nu leverage. Fără SL declarat — deci fără invalidare definită.","pl":26.197417742607243,"hit":0,"conf":0,"nxt":4.521,"d_nxt":49.20792079207921,"d_sl":null,"rr":null,"stopped":false},{"id":"4.1","t":"SUI","dir":"LONG","risc":"","d":"05.09.2026","e":0.7663,"sl":0.7272,"tps":[0.8128,0.8814,0.9536],"p":0.818538,"note":"Cel mai recent long.","pl":6.816912436382627,"hit":1,"conf":0,"nxt":0.8814,"d_nxt":7.679790064725145,"d_sl":12.560231023102308,"rr":4.790281329923271,"stopped":false},{"id":"5.1","t":"SUSHI","dir":"CALL","risc":"","d":"07.08.2026","e":0.1648,"sl":null,"tps":[0.5321,0.9228],"p":0.238122,"note":"Repostat pe 6 sep ca dovadă că poziția e pe plus. Fără mcap, supply sau sector în postare — cel mai subțire call din set.","pl":44.49150485436893,"hit":0,"conf":0,"nxt":0.5321,"d_nxt":123.45688344630065,"d_sl":null,"rr":null,"stopped":false},{"id":"6.1","t":"ZEC","dir":"SHORT","risc":"high risk","d":"07.09.2026","e":1182.69,"sl":1276.46,"tps":[1039.93,969.61,890.77],"p":1168.08,"note":"Primul short din tot setul. Pariază pe corecție după un pump de la ~$800 la ~$1.276 în trei zile. Aici SL-ul e portocaliu, nu gri — și-a schimbat convenția. Lângă intrare mai e o etichetă la $1.184,78 pe care n-am putut-o atribui; diferența de 0,2% nu schimbă nimic.","pl":1.2507704951715715,"hit":0,"conf":0,"nxt":1039.93,"d_nxt":-10.97099513731935,"d_sl":9.278474077118016,"rr":3.113149194838436,"stopped":false}];
 
 if (LIVE){
   for (const x of TRADES){
     const q = LIVE.P[CGID[x.t]];
     if (!q || typeof q.usd !== "number") continue;
     const p = q.usd; x.p = p;
-    x.pl = (p / x.e - 1) * 100;
-    x.hit = Math.max(x.tps.filter(t => p >= t).length, x.conf || 0);
-    x.nxt = x.tps.find(t => p < t) ?? null;
+    const scurt = x.dir === "SHORT";
+    if (scurt){
+      x.pl   = (x.e / p - 1) * 100;
+      x.hit  = Math.max(x.tps.filter(t => p <= t).length, x.conf || 0);
+      x.nxt  = x.tps.find(t => p > t) ?? null;
+      x.d_sl = x.sl ? (x.sl / p - 1) * 100 : null;
+      x.rr   = (x.sl && x.sl > x.e) ? (x.e - x.tps[x.tps.length-1]) / (x.sl - x.e) : null;
+      x.stopped = x.sl ? p >= x.sl : false;
+    } else {
+      x.pl   = (p / x.e - 1) * 100;
+      x.hit  = Math.max(x.tps.filter(t => p >= t).length, x.conf || 0);
+      x.nxt  = x.tps.find(t => p < t) ?? null;
+      x.d_sl = x.sl ? (p / x.sl - 1) * 100 : null;
+      x.rr   = (x.sl && x.e > x.sl) ? (x.tps[x.tps.length-1] - x.e) / (x.e - x.sl) : null;
+      x.stopped = x.sl ? p <= x.sl : false;
+    }
     x.d_nxt = x.nxt ? (x.nxt / p - 1) * 100 : null;
-    x.d_sl = x.sl ? (p / x.sl - 1) * 100 : null;
-    x.rr = (x.sl && x.e > x.sl) ? (x.tps[x.tps.length-1] - x.e) / (x.e - x.sl) : null;
-    x.stopped = x.sl ? p <= x.sl : false;
   }
 }
 
@@ -592,7 +603,7 @@ function pct(v, dec){ const n = (v>=0?'+':'') + v.toFixed(dec==null?1:dec); retu
   const withSL = TRADES.filter(t=>t.sl!=null);
   const tiles = [
     {lab:'Trade-uri publicate', val:TRADES.length, hint:withSL.length+' cu stop loss · '+(TRADES.length-withSL.length)+' fără'},
-    {lab:'Pe plus acum', val:up+'/'+TRADES.length, hint:'niciunul stopat', cls:'up'},
+    {lab:'Pe plus acum', val:up+'/'+TRADES.length, hint:(TRADES.filter(t=>t.stopped).length||'niciunul')+' stopat', cls:'up'},
     {lab:'P/L mediu', val:pct(avg), hint:'de la intrarea ei, neponderat', cls:avg>=0?'up':'down'},
     {lab:'Cel mai bun', val:best.t, hint:pct(best.pl)+' de la '+best.d, cls:'up'},
   ];
@@ -601,10 +612,11 @@ function pct(v, dec){ const n = (v>=0?'+':'') + v.toFixed(dec==null?1:dec); retu
 })();
 
 function ladder(x){
-  const lo = x.sl!=null ? Math.min(x.sl, x.e) : x.e;
-  const hi = x.tps[x.tps.length-1];
-  const at = v => Math.max(0, Math.min(100, (v-lo)/(hi-lo)*100));
-  const pe = at(x.e), pp = at(x.p), down = x.p < x.e;
+  const short = x.dir === 'SHORT';
+  const niv = [x.e, ...x.tps]; if (x.sl != null) niv.push(x.sl);
+  const lo = Math.min(...niv), hi = Math.max(...niv);
+  const at = v => { const f = (v - lo) / (hi - lo); return Math.max(0, Math.min(100, (short ? 1 - f : f) * 100)); };
+  const pe = at(x.e), pp = at(x.p), down = short ? x.p > x.e : x.p < x.e;
   const a = Math.min(pe,pp), b = Math.max(pe,pp);
   return `<div class="ladder">
     <div class="lad">
@@ -614,7 +626,7 @@ function ladder(x){
       ${x.tps.map(t=>`<span class="tpm" style="left:${at(t).toFixed(2)}%"></span>`).join('')}
       <span class="now ${down?'down':''}" style="left:${pp.toFixed(2)}%"></span>
     </div>
-    <div class="ladlab"><span>${fp(lo)}</span><span>${fp(hi)}</span></div>
+    <div class="ladlab"><span>${fp(short?hi:lo)}</span><span>${fp(short?lo:hi)}</span></div>
     <div class="ladkey">
       <span class="k-e"><i></i>intrare ${fp(x.e)}</span>
       ${x.sl!=null?`<span class="k-sl"><i></i>SL ${fp(x.sl)}</span>`:'<span class="k-sl">fără SL</span>'}
@@ -625,7 +637,7 @@ function ladder(x){
 
 document.getElementById('tcards').innerHTML = TRADES.map(x=>{
   const up = x.pl >= 0;
-  const dirCls = x.dir==='LONG'?'long':(x.dir==='SPOT'?'spot':'call');
+  const dirCls = {LONG:'long',SPOT:'spot',SHORT:'short'}[x.dir] || 'call';
   const nxt = x.nxt!=null
     ? `${fp(x.nxt)} <span class="sub">· <span class="g">${pct(x.d_nxt)}</span></span>`
     : 'toate atinse';
@@ -662,8 +674,9 @@ document.querySelector(".stamp span").textContent = LIVE ? "CoinGecko — live" 
 
 document.getElementById('verdict').innerHTML = `
   <h3>Ce spun cifrele</h3>
-  <p><strong>${TRADES.filter(t=>!t.stopped).length} din ${TRADES.length} trade-uri sunt pe plus și niciunul n-a fost stopat.</strong> Asta e real, dar acoperă o singură lună într-o piață în care BTC a ${META.btc30>=0?"urcat":"scăzut"} ${Math.abs(META.btc30).toFixed(1).replace(".",",")}% în 30 de zile. Într-un interval ca ăsta, aproape orice long pe alt-coin arată bine — testul vine la prima corecție serioasă.</p>
+  <p><strong>${TRADES.filter(t=>t.pl>0).length} din ${TRADES.length} trade-uri sunt pe plus${TRADES.some(t=>t.stopped)?"":" și niciunul n-a fost stopat"}.</strong> Asta e real, dar acoperă o singură lună într-o piață în care BTC a ${META.btc30>=0?"urcat":"scăzut"} ${Math.abs(META.btc30).toFixed(1).replace(".",",")}% în 30 de zile. Într-un interval ca ăsta, aproape orice long pe alt-coin arată bine — testul vine la prima corecție serioasă.</p>
   <p><strong>Un singur rezultat e confirmat public de ea:</strong> ALGO 2.2, TP1 atins pe 3 septembrie, +7,7%, cu SL mutat în profit. Pentru restul, „atins" e dedus din prețul de azi — dacă prețul a trecut prin TP și s-a întors, nu apare nicăieri un anunț de închidere. Fără istoric de închideri anunțate, rata reală de câștig nu se poate calcula.</p>
+  <p><strong>Primul short din tot setul: ZEC, 7 septembrie.</strong> Până acum totul a fost long — într-o piață care urca, direcția n-a fost testată niciodată. Aici pariază contra unui pump de la ~$800 la ~$1.276 în trei zile, cu SL la $1.276,46 și R:R 1:3,1. E singurul trade din set în care poate avea dreptate pe teză și greșit pe moment: un short prins într-o continuare de squeeze pierde rapid, chiar dacă prețul ajunge la țintă o săptămână mai târziu. Tot aici și-a schimbat convenția — SL-ul e portocaliu, nu gri.</p>
   <p><strong>Două poziții n-au stop loss declarat:</strong> ICP (spot) și SUSHI. Fără SL nu există invalidare, deci nici R:R calculabil — sunt investiții pe termen scurt, nu trade-uri în sensul strict, chiar dacă apar în același flux.</p>
   <p><strong>SUSHI e cazul special.</strong> ${(TRADES.find(t=>t.t==="SUSHI")?.pl ?? 0).toFixed(1).replace(".",",").replace("-","−").replace(/^(?!−)/,"+")}% de la call-ul din 7 august, dar postarea n-are mcap, supply, sector sau teză — doar „Easy money". A repostat-o pe 6 septembrie ca dovadă că poziția e în desfășurare și pe plus. Cine intră acum plătește un preț deja mult peste call, fără să știe unde e invalidarea.</p>
 `;
