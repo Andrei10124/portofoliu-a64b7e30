@@ -271,6 +271,22 @@ tbody tr:hover .c-coin{background:var(--surface-2)}
 .verdict strong{color:var(--ink)}
 @media (max-width:400px){.stats{grid-template-columns:1fr}}
 
+
+/* ---------- partea 3: pozitiile mele ---------- */
+.perp{display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.05em;
+  padding:3px 7px; border-radius:2px; white-space:nowrap; background:var(--lc-soft); color:var(--lc)}
+.spot{display:inline-block; font-family:var(--mono); font-size:10px; letter-spacing:.05em;
+  padding:3px 7px; border-radius:2px; white-space:nowrap; background:var(--bc-soft); color:var(--bc)}
+.mypl{font-family:var(--mono); font-size:13px; font-variant-numeric:tabular-nums; font-weight:600;
+  white-space:nowrap; text-align:right}
+.mypl.up{color:var(--gain)} .mypl.down{color:var(--loss)}
+.mysub{font-size:11px; color:var(--ink-3); font-weight:400}
+.ptable{min-width:1120px}
+tfoot td{padding:12px; border-top:2px solid var(--line-2); font-weight:600; background:var(--surface-2)}
+.warn{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--loss);
+  padding:18px 20px; display:flex; flex-direction:column; gap:10px; box-shadow:var(--shadow)}
+.warn h4{margin:0; font-family:var(--display); font-size:16px; font-weight:600}
+.warn p{margin:0; font-size:13.5px; color:var(--ink-2); line-height:1.6}
 </style>
 </head>
 <body>
@@ -336,6 +352,26 @@ tbody tr:hover .c-coin{background:var(--surface-2)}
   <div class="tcards" id="tcards"></div>
 
   <section class="verdict" id="verdict"></section>
+
+  <div class="partline"><span class="parttag">Partea 3</span></div>
+
+  <div class="parthead">
+    <h2>Pozitiile mele</h2>
+    <p>Achizitiile reale din 7 septembrie 2026, pentru portofoliul long term pana in 2028. Preturile de intrare sunt cele efectiv executate, nu cele din postarile ei. Se actualizeaza live odata cu restul paginii.</p>
+  </div>
+
+  <section class="tiles" id="mytiles" aria-label="Sumar pozitiile mele"></section>
+
+  <div class="tablewrap">
+    <table class="ptable">
+      <thead><tr id="myhrow"></tr></thead>
+      <tbody id="mybody"></tbody>
+      <tfoot id="myfoot"></tfoot>
+    </table>
+  </div>
+
+  <div class="warn" id="mywarn"></div>
+
 </div>
 
 <script>
@@ -703,6 +739,107 @@ document.getElementById('verdict').innerHTML = `
   <p><strong>Short-ul pe LINK e cel care cere atenție.</strong> LINK e în propriul ei portofoliu long term, la blue chips, ținut până în 2028 — și îl shortează pe termen scurt. Nu e neapărat o contradicție (cărți separate, orizonturi separate), dar dacă tu copiezi și portofoliul, și trade-urile, ajungi să fii simultan long și short pe același activ, plătind spread și funding în ambele sensuri. R:R aici e 1:2,3, cel mai slab din tot setul.</p>
   <p><strong>Convenția ei de culori s-a schimbat de două ori în două zile.</strong> Până la ZEC: TP albastru, SL gri. La ZEC (7 sep): „SL in orange". La ADA (8 sep): înapoi la „SL in grey". Dacă citești chart-urile ei, verifică legenda de fiecare dată — nu presupune.</p>
 `;
+
+
+
+/* ================= PARTEA 3: pozitiile mele ================= */
+const POZ = [
+  {t:'FET',  tip:'Spot',    d:'7 sep, 02:41',       qty:199.2,  inv:35.00, e:35/199.2},
+  {t:'TAO',  tip:'Spot',    d:'7 sep, 02:41',       qty:0.1316, inv:35.00, e:35/0.1316},
+  {t:'ALGO', tip:'Spot',    d:'7 sep, 02:41',       qty:310,    inv:30.00, e:30/310},
+  {t:'SOL',  tip:'Spot',    d:'7 sep, 02:42',       qty:0.281,  inv:30.00, e:30/0.281},
+  {t:'GMX',  tip:'Spot',    d:'7 sep, 02:46',       qty:1.254,  inv:10.00, e:10/1.254},
+  {t:'XAI',  tip:'Spot',    d:'7 sep, 02:49–03:43', qty:1284.9, inv:10.08, e:10.08/1284.9, ord:3},
+  {t:'ZBT',  tip:'Perp 1x', d:'7 sep',              qty:117,    inv:10.01, e:0.08556},
+  {t:'ZK',   tip:'Perp 1x', d:'7 sep',              qty:890,    inv:9.94,  e:0.011171},
+  {t:'APR',  tip:'Perp 1x', d:'7 sep',              qty:40,     inv:8.05,  e:0.2013},
+];
+
+function usd(v, dec){ return '$' + ro(v.toFixed(dec == null ? 2 : dec)); }
+
+function renderPoz(){
+  const rows = POZ.map(p => {
+    const src = DATA.find(r => r.t === p.t) || {};
+    const px  = src.p;
+    const val = px != null ? p.qty * px : null;
+    return Object.assign({}, p, {
+      n: src.n, px: px, val: val,
+      plUsd: val != null ? val - p.inv : null,
+      plPct: px != null ? (px / p.e - 1) * 100 : null,
+      vsEa:  src.e != null ? (p.e / src.e - 1) * 100 : null,
+      prag:  p.e * 2,
+      xRam:  (src.tg && src.tg.length && px) ? src.tg[src.tg.length - 1] / px : null
+    });
+  });
+
+  const inv  = rows.reduce((a, r) => a + r.inv, 0);
+  const val  = rows.reduce((a, r) => a + (r.val || 0), 0);
+  const pl   = val - inv;
+  const plP  = (val / inv - 1) * 100;
+  const up   = rows.filter(r => r.plPct > 0).length;
+  const best = rows.reduce((a, r) => (r.plPct == null ? -1e9 : r.plPct) > (a.plPct == null ? -1e9 : a.plPct) ? r : a);
+  const wrs  = rows.reduce((a, r) => (r.plPct == null ?  1e9 : r.plPct) < (a.plPct == null ?  1e9 : a.plPct) ? r : a);
+  const nSpot = POZ.filter(p => p.tip === 'Spot').length;
+
+  document.getElementById('mytiles').innerHTML = [
+    {lab:'Investit',           val:usd(inv), hint:rows.length + ' poziții · ' + nSpot + ' spot, ' + (rows.length - nSpot) + ' perp 1x'},
+    {lab:'Valoare acum',       val:usd(val), hint:'la prețurile de mai jos'},
+    {lab:'Profit / pierdere',  val:(pl >= 0 ? '+' : '−') + usd(Math.abs(pl)), hint:pct(plP) + ' pe tot portofoliul', cls:pl >= 0 ? 'up' : 'down'},
+    {lab:'Pe plus',            val:up + '/' + rows.length, hint:'față de prețul meu de intrare'},
+    {lab:'Cea mai bună',       val:best.t, hint:pct(best.plPct) + ' · cea mai slabă ' + wrs.t + ' ' + pct(wrs.plPct), cls:'up'}
+  ].map(t => '<div class="tile"><span class="lab">' + t.lab + '</span><span class="val ' + (t.cls || '') + '">' + t.val + '</span><span class="hint">' + t.hint + '</span></div>').join('');
+
+  const heads = ['#','Coin','Tip','Achiziție','Bucăți','Prețul meu','Investit','Preț acum','Valoare','P/L','vs intrarea ei','Prag +100%','x rămas'];
+  document.getElementById('myhrow').innerHTML = heads.map((x, i) =>
+    '<th class="static ' + (i >= 4 ? 'num' : '') + ' ' + (i === 1 ? 'c-coin' : '') + '">' + x + '</th>').join('');
+
+  document.getElementById('mybody').innerHTML = rows.map((r, i) => {
+    const plc = r.plUsd >= 0 ? 'up' : 'down';
+    const vs  = r.vsEa == null ? '<span class="dash">n/a</span>'
+              : '<span class="delta ' + (r.vsEa <= 0 ? 'up' : 'down') + '">' + pct(r.vsEa) + '</span>';
+    return '<tr class="mine">' +
+      '<td class="idx">' + (i + 1) + '</td>' +
+      '<td class="c-coin"><div class="tick">' + r.t + '<span class="owned">●</span></div>' +
+        '<div class="cname">' + (r.n || '') + '</div></td>' +
+      '<td><span class="' + (r.tip === 'Spot' ? 'spot' : 'perp') + '">' + r.tip + '</span></td>' +
+      '<td class="num">' + r.d + (r.ord ? '<div class="mysub">' + r.ord + ' ordine</div>' : '') + '</td>' +
+      '<td class="num">' + ro(r.qty.toLocaleString('ro-RO')) + '</td>' +
+      '<td class="num">' + fp(r.e) + '</td>' +
+      '<td class="num">' + usd(r.inv) + '</td>' +
+      '<td class="num">' + (r.px != null ? fp(r.px) : '—') + '</td>' +
+      '<td class="num">' + (r.val != null ? usd(r.val) : '—') + '</td>' +
+      '<td class="mypl ' + plc + '">' + (r.plUsd >= 0 ? '+' : '−') + usd(Math.abs(r.plUsd)) +
+        '<div class="mysub" style="color:inherit">' + pct(r.plPct) + '</div></td>' +
+      '<td class="num">' + vs + '</td>' +
+      '<td class="num">' + fp(r.prag) + '</td>' +
+      '<td class="num">' + (r.xRam ? ro(r.xRam.toFixed(1)) + 'x' : '<span class="dash">n/a</span>') + '</td>' +
+    '</tr>';
+  }).join('');
+
+  document.getElementById('myfoot').innerHTML =
+    '<tr><td colspan="6">Total</td>' +
+    '<td class="num">' + usd(inv) + '</td><td></td>' +
+    '<td class="num">' + usd(val) + '</td>' +
+    '<td class="mypl ' + (pl >= 0 ? 'up' : 'down') + '">' + (pl >= 0 ? '+' : '−') + usd(Math.abs(pl)) +
+      '<div class="mysub" style="color:inherit">' + pct(plP) + '</div></td>' +
+    '<td colspan="3"></td></tr>';
+
+  const perp = rows.filter(r => r.tip !== 'Spot');
+  const perpInv = perp.reduce((a, r) => a + r.inv, 0);
+  document.getElementById('mywarn').innerHTML =
+    '<h4>Trei lucruri de urmărit la pozițiile astea</h4>' +
+    '<p><strong>' + perp.length + ' din ' + rows.length + ' poziții sunt perpetue, nu spot</strong> — ' +
+    perp.map(r => r.t).join(', ') + ', ' + usd(perpInv) + ' în total. La 1x nu ai risc real de lichidare, ' +
+    'dar <em>plătești funding la fiecare 8 ore</em> și nu deții efectiv monedele. Pe un orizont de doi ani, ' +
+    'într-o piață în creștere unde longii plătesc, funding-ul se poate aduna la zeci de procente din poziție. ' +
+    'Pentru un hold până în 2028, spotul e instrumentul corect — merită mutate când ai ocazia.</p>' +
+    '<p><strong>Coloana „Prag +100%" e regula ei de aur:</strong> când poziția se dublează, scoți capitalul ' +
+    'inițial și lași restul să meargă mai departe pe gratis. Ai acolo prețul exact la care se întâmplă asta ' +
+    'pentru fiecare monedă, calculat la intrarea ta reală, nu la a ei.</p>' +
+    '<p><strong>XAI e singura fără țintă publicată de ea</strong> — e în lista ei de low caps, dar n-a dat ' +
+    'niciodată preț sau multiplu. Nu are cu ce fi comparată: o ții pe încrederea în selecția ei, nu pe o teză numerică.</p>';
+}
+renderPoz();
 
 
 }
