@@ -119,6 +119,11 @@ h1 .yr{color:var(--accent)}
 .pill:hover{border-color:var(--ink-3); color:var(--ink)}
 .pill:focus-visible{outline:2px solid var(--accent); outline-offset:1px}
 .pill[aria-pressed="true"]{background:var(--ink); color:var(--ground); border-color:var(--ink)}
+.pill-mine{color:var(--accent); border-color:var(--accent)}
+.pill-mine:hover{color:var(--accent); border-color:var(--accent)}
+.pill-mine[aria-pressed="true"]{background:var(--accent); color:var(--surface); border-color:var(--accent)}
+.owned{color:var(--accent); font-size:9px; vertical-align:middle; margin-left:5px}
+tbody tr.mine .c-coin{box-shadow:inset 2px 0 0 var(--accent)}
 .count{margin-left:auto; font-family:var(--mono); font-size:12px; color:var(--ink-3)}
 
 /* ---------- table ---------- */
@@ -294,6 +299,7 @@ tbody tr:hover .c-coin{background:var(--surface-2)}
       <button class="pill" data-f="all" aria-pressed="true">Toate</button>
       <button class="pill" data-f="bc" aria-pressed="false">Blue chip</button>
       <button class="pill" data-f="lc" aria-pressed="false">Low cap</button>
+      <button class="pill pill-mine" data-f="mine" aria-pressed="false">Portofoliul meu</button>
       <button class="pill" data-f="call" aria-pressed="false">Cu call</button>
       <button class="pill" data-f="nocall" aria-pressed="false">Fără call</button>
     </div>
@@ -428,13 +434,16 @@ function dsort(d){
 }
 
 /* ---- derived fields ---- */
+const ALE_MELE = new Set(['ZK','XAI','APR','ZBT','GMX','SOL','ALGO','TAO','FET']);
+
 DATA.forEach((r,ix)=>{
   r.i = ix+1;
   r.tmax = r.tg && r.tg.length ? r.tg[r.tg.length-1] : null;
   r.delta = (r.p!=null && r.e!=null) ? (r.p/r.e-1)*100 : null;
   r.xram  = (r.p!=null && r.tmax!=null) ? r.tmax/r.p : null;
   r.hasCall = r.e!=null;
-  r.blob = (r.t+' '+r.n+' '+r.s).toLowerCase();
+  r.mine = ALE_MELE.has(r.t);
+  r.blob = (r.t+' '+r.n+' '+r.s+(r.mine?' portofoliul meu al meu':'')).toLowerCase();
 });
 
 /* ---- summary tiles ---- */
@@ -489,6 +498,7 @@ function render(){
   let rows = DATA.filter(r=>{
     if(filter==='bc' && r.c!=='bc') return false;
     if(filter==='lc' && r.c!=='lc') return false;
+    if(filter==='mine' && !r.mine) return false;
     if(filter==='call' && !r.hasCall) return false;
     if(filter==='nocall' && r.hasCall) return false;
     return !q || r.blob.includes(q);
@@ -516,10 +526,10 @@ function render(){
       ? `<div class="targets">${r.tg.map(t=>`<span class="tchip">${fp(t)}</span>`).join('')}</div>`
       : '<span class="dash">—</span>';
     const na = '<span class="dash">n/a</span>';
-    return `<tr class="${r.hasCall?'':'nocall'}">
+    return `<tr class="${r.hasCall?'':'nocall'} ${r.mine?'mine':''}">
       <td class="idx">${r.i}</td>
       <td class="c-coin">
-        <div class="tick">${r.t}</div>
+        <div class="tick">${r.t}${r.mine?'<span class="owned" title="În portofoliul meu">●</span>':''}</div>
         <div class="cname">${r.n}</div>
         ${r.s?`<div class="csec">${r.s}</div>`:''}
       </td>
